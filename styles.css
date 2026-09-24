@@ -1,0 +1,410 @@
+/* Agave: „Pirmą kartą Agave" gidas internete.
+   Spalvos ir tonas iš context/stilius.md. Fonas visada šviesus (firminė taisyklė),
+   todėl tamsaus režimo nėra. Formos: nuotraukos ir blokai 14px, mygtukai pilnai apvalūs. */
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("fonts/source-sans-3-latin-ext.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("fonts/source-sans-3-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light;
+
+  /* firminės */
+  --teal: #336666;
+  --teal-deep: #244a4a;
+  --grey: #669999;
+  --yellow: #FFFFCC;
+  /* plytelių akcentas (tik vienas) */
+  --gold: #E5A727;
+  /* neutralios */
+  --ink: #23201D;
+  --ink-soft: #6E655B;
+  --line: #E2D9CB;
+  --cream: #F7F1E6;
+  --paper: #FFFDF9;
+
+  --radius: 14px;
+  --wrap: 1180px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Source Sans 3", "Segoe UI", Calibri, system-ui, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+figure { margin: 0; }
+h1, h2, h3 { margin: 0; font-weight: 650; letter-spacing: -0.015em; }
+p { margin: 0; }
+
+a { color: var(--teal); }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* talavera juosta viršuje */
+.talavera {
+  height: 22px;
+  background: url("img/talavera.png") repeat-x left center / auto 100%;
+}
+
+/* antraštė */
+.top { border-bottom: 1px solid var(--line); background: var(--paper); }
+.top__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 68px;
+}
+.top__logo img { width: 76px; }
+
+/* mygtukai: viena rezervacijos formuluotė visame puslapyje */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: 999px;
+  padding: 0.85em 1.6em;
+  font-weight: 650;
+  font-size: 1.05rem;
+  text-decoration: none;
+  transition: transform 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+.btn--primary { background: var(--teal); color: #fff; }
+.btn--primary:hover { background: var(--teal-deep); }
+.btn:active { transform: translateY(1px) scale(0.98); }
+.btn--small { padding: 0.6em 1.15em; font-size: 0.95rem; }
+
+.link {
+  font-weight: 600;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--gold);
+}
+
+/* pirmas ekranas */
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+  padding-top: clamp(28px, 5vw, 64px);
+  padding-bottom: clamp(48px, 7vw, 96px);
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 5.2vw, 4.1rem);
+  line-height: 1.04;
+  letter-spacing: -0.028em;
+  color: var(--teal);
+  max-width: 17ch;
+}
+.hero h1 span {
+  display: block;
+  color: var(--ink);
+  font-weight: 500;
+  font-size: 0.62em;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin-top: 0.3em;
+  max-width: 20ch;
+}
+.lead {
+  margin-top: 22px;
+  max-width: 36ch;
+  font-size: clamp(1.15rem, 1.6vw, 1.3rem);
+  color: var(--ink-soft);
+}
+.hero__cta {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 26px;
+}
+.hero__photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 30%;
+  border-radius: var(--radius);
+}
+.hero__photo figcaption {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+/* įžanga */
+.intro { background: var(--cream); padding: clamp(56px, 8vw, 110px) 0; }
+.intro__grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(28px, 5vw, 72px);
+  align-items: end;
+}
+.intro__big {
+  font-size: clamp(1.45rem, 2.4vw, 1.9rem);
+  line-height: 1.3;
+  font-weight: 550;
+  margin-bottom: 20px;
+}
+.intro__text p + p { margin-top: 14px; }
+.intro__text p:not(.intro__big) { max-width: 44ch; }
+.sign { font-style: italic; color: var(--teal); font-weight: 600; }
+.intro__photo img { border-radius: var(--radius); aspect-ratio: 3 / 2; object-fit: cover; }
+
+/* bendri sekcijų dalykai */
+.step {
+  font-weight: 600;
+  color: #A8740F; /* auksinė, patamsinta, kad tekstas būtų įskaitomas */
+  margin-bottom: 8px;
+}
+section h2 {
+  font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+  line-height: 1.1;
+  color: var(--teal);
+  max-width: 22ch;
+}
+.section-lead {
+  margin-top: 14px;
+  max-width: 56ch;
+  color: var(--ink-soft);
+  font-size: 1.2rem;
+}
+
+/* pirmas dalykas: aštrumas */
+.spice { padding: clamp(64px, 9vw, 120px) 0; }
+.spice__grid {
+  margin-top: clamp(28px, 4vw, 48px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: start;
+}
+.spice__photo img { border-radius: var(--radius); aspect-ratio: 4 / 3; object-fit: cover; }
+.facts { margin: 0; display: grid; gap: 22px; }
+.facts div { padding-left: 18px; border-left: 3px solid var(--line); }
+.facts dt { font-weight: 650; }
+.facts dd { margin: 4px 0 0; color: var(--ink-soft); max-width: 48ch; }
+
+.word {
+  margin-top: clamp(40px, 6vw, 72px);
+  background: var(--yellow);
+  border-radius: var(--radius);
+  padding: clamp(28px, 5vw, 56px) clamp(22px, 5vw, 64px);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "label label" "big note";
+  gap: 6px 40px;
+  align-items: end;
+}
+.word__label { grid-area: label; font-weight: 600; }
+.word__big {
+  grid-area: big;
+  font-size: clamp(3.2rem, 11vw, 8rem);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--teal);
+  padding-bottom: 0.08em;
+}
+.word__note { grid-area: note; color: var(--ink-soft); max-width: 30ch; padding-bottom: 0.9em; }
+
+/* antras dalykas: trys keliai */
+.paths { background: var(--cream); padding: clamp(64px, 9vw, 120px) 0; }
+.paths__tabs {
+  margin-top: clamp(24px, 4vw, 40px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.paths__tabs button {
+  font: inherit;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: 2px solid var(--teal);
+  background: transparent;
+  color: var(--teal);
+  border-radius: 999px;
+  padding: 0.6em 1.3em;
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.paths__tabs button:hover { background: rgba(51, 102, 102, 0.08); }
+.paths__tabs button:active { transform: scale(0.98); }
+.paths__tabs button[aria-selected="true"] { background: var(--teal); color: #fff; }
+
+.paths__panel { margin-top: 28px; }
+.paths__panel.is-in { animation: rise 0.45s var(--ease); }
+.dishes { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(18px, 3vw, 36px); }
+.dishes--one { grid-template-columns: minmax(0, 620px); }
+.dish img { border-radius: var(--radius); aspect-ratio: 16 / 9; object-fit: cover; background: #eceae6; }
+.dish h3 {
+  margin-top: 14px;
+  font-size: 1.35rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 16px;
+}
+.price { color: var(--teal); font-weight: 650; white-space: nowrap; }
+.dish p { margin-top: 4px; color: var(--ink-soft); }
+.paths__note {
+  margin-top: 26px;
+  max-width: 60ch;
+  padding: 16px 20px;
+  background: var(--paper);
+  border-radius: var(--radius);
+}
+.aside {
+  margin-top: clamp(32px, 5vw, 56px);
+  font-size: 1.2rem;
+  max-width: 48ch;
+  font-style: italic;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* trečias dalykas: vidury savaitės */
+.calm { padding-bottom: clamp(64px, 9vw, 120px); }
+.calm__photo img {
+  width: 100%;
+  height: clamp(260px, 42vw, 560px);
+  object-fit: cover;
+  object-position: 50% 60%;
+}
+.calm__body { margin-top: clamp(-120px, -8vw, -48px); position: relative; }
+.calm__card {
+  background: var(--paper);
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 24px 28px 0;
+  max-width: 660px;
+}
+.calm__card h2 { max-width: none; }
+
+.week {
+  list-style: none;
+  margin: 36px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+.week li {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px 8px;
+  text-align: center;
+  display: grid;
+  gap: 2px;
+}
+.week span { font-weight: 650; }
+.week b { font-weight: 400; font-size: 0.95rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.week__calm { background: var(--yellow); border-color: #E8E6A6 !important; }
+.week__calm b { color: var(--ink); }
+.week__off { opacity: 0.55; }
+.week__off b { font-size: 0.8rem; }
+
+.calm__cols {
+  margin-top: clamp(32px, 5vw, 56px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 5vw, 64px);
+}
+.calm__cols h3 { font-size: 1.35rem; color: var(--teal); }
+.calm__cols p { margin-top: 8px; color: var(--ink-soft); max-width: 50ch; }
+
+/* kai norėsite ateiti */
+.visit { background: var(--cream); padding: clamp(64px, 9vw, 120px) 0; }
+.visit__grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(28px, 6vw, 88px);
+  align-items: center;
+}
+.visit__photo img { border-radius: var(--radius); aspect-ratio: 4 / 5; object-fit: cover; }
+.visit__addr { margin-top: 10px; font-size: 1.3rem; font-weight: 600; }
+.visit__cta { margin: 28px 0; display: grid; gap: 14px; justify-items: start; }
+.visit__phone { color: var(--ink-soft); }
+.visit__phone a { font-weight: 600; white-space: nowrap; }
+.visit__text > p:not(.visit__addr):not(.hasta) { max-width: 46ch; }
+.hasta { margin-top: 22px; font-size: 1.5rem; font-weight: 650; color: var(--teal); }
+
+/* apačia */
+.foot { border-top: 1px solid var(--line); padding: 28px 0 40px; }
+.foot__row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; color: var(--ink-soft); font-size: 1rem; }
+.foot__row img { width: 60px; }
+.foot__row a { margin-left: auto; font-weight: 600; }
+
+/* įėjimo judesys pirmame ekrane: vienas, ramus */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__text > * { animation: rise 0.7s var(--ease) both; }
+  .hero__text > :nth-child(2) { animation-delay: 0.08s; }
+  .hero__text > :nth-child(3) { animation-delay: 0.16s; }
+  .hero__photo { animation: rise 0.9s var(--ease) 0.1s both; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* planšetė ir telefonas: viena kolona */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero__photo { order: -1; }
+  .hero__photo img { aspect-ratio: 4 / 3; object-position: 50% 25%; }
+  .intro__grid,
+  .spice__grid,
+  .calm__cols,
+  .visit__grid { grid-template-columns: 1fr; }
+  .visit__photo img { aspect-ratio: 16 / 10; }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 1.0625rem; }
+  .talavera { height: 16px; }
+  .top__row { min-height: 60px; }
+  .top__logo img { width: 62px; }
+  .hero h1 { max-width: none; }
+  .dishes { grid-template-columns: 1fr; }
+  .word { grid-template-columns: 1fr; grid-template-areas: "label" "big" "note"; }
+  .word__note { padding-bottom: 0; }
+  .week { grid-template-columns: repeat(4, 1fr); }
+  .calm__card { padding: 0; }
+  .calm__body { margin-top: 28px; }
+  .paths__tabs { gap: 8px; }
+  .paths__tabs button { font-size: 1rem; padding: 0.55em 1em; }
+  .foot__row a { margin-left: 0; }
+}
